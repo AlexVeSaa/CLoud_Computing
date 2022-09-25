@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>ESTUDIANTE</h2>
+<form method="post" action="{{url_for('insertar')}}">
+  
+  {{ form_student.hidden_tag() }}
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.nombres.label(class="form-label") }}
+    {{form_student.nombres(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.apellido.label(class="form-label") }}
+    {{form_student.apellido(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.DNI.label(class="form-label") }}
+    {{form_student.DNI(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.fechaNacimiento.label(class="form-label") }}
+    {{form_student.fechaNacimiento(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.sexo.label(class="form-label") }}
+    {{form_student.sexo(class = "form-control")}}
+    </div>
+  </div>
+<br>
+
+<h2>ESCUELA</h2>
+<div class="form-row"> 
+  <div class="col-md-6 mb-3">
+  {{form_Escuela.codigoEscuela.label(class="form-label") }}
+  {{form_Escuela.codigoEscuela(class = "form-control")}}
+  </div>
+</div>
+<div class="form-row"> 
+  <div class="col-md-6 mb-3">
+  {{form_Escuela.nombreEscuela.label(class="form-label") }}
+  {{form_Escuela.nombreEscuela(class = "form-control")}}
+  </div>
+</div>
+<div class="form-row"> 
+  <div class="col-md-6 mb-3">
+  {{form_Escuela.duracionEscuela.label(class="form-label") }}
+  {{form_Escuela.duracionEscuela(class = "form-control")}}
+  </div>
+</div>
+<br>
+
+  <h2>CURSO</h2>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_Curso.codigoCurso.label(class="form-label") }}
+    {{form_Curso.codigoCurso(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_Curso.nombreCurso.label(class="form-label") }}
+    {{form_Curso.nombreCurso(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_Curso.creditoCurso.label(class="form-label") }}
+    {{form_Curso.creditoCurso(class = "form-control")}}
+    </div>
+  </div>
+    <input class="btn btn-primary" type="submit" value="GUARDAR">
+  </form>
+  
+  <br>
+  <br>
+  <br>
+
+{% endblock %}

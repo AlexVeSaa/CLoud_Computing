@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Código</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Duración</th>
+        <th scope="col">Evento</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for escuela in escuelas %}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{escuela.codigo}}</td>
+        <td>{{escuela.nombre}}</td>
+        <td>{{escuela.duracion}}</td>
+        
+      </tr>
+      {% endfor %} 
+    </tbody>
+  </table>
+{% endblock %}

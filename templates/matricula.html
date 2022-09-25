@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">CURSO</th>
+        <th scope="col">ESCUELA</th>
+        <th scope="col">ESTUDIANTE</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for matricula in lista %}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{matricula.nombreEscuela}}</td>
+        <td>{{matricula.nombreCurso}}</td>
+        <td>{{matricula.nombreEstudiante}}</td>
+        
+      </tr>
+      {% endfor %} 
+    </tbody>
+  </table>
+{% endblock %}
