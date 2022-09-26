@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -20,7 +19,6 @@
         <td>{{curso.credito}}</td>
         <td class="d-flex">
           <a href="{{url_for('editCurso',id=curso.id)}}" type="button" class="btn btn-primary">Editar</a>
-          
           <form method="post" action="{{url_for('deleteCurso',id=curso.id)}}"  >
               <button type="submit" class="btn btn-danger">Delete</button>
           </form>

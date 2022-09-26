@@ -18,8 +18,8 @@
         <td>{{escuela.nombre}}</td>
         <td>{{escuela.duracion}}</td>
         <td class="d-flex">
-          <a href="" type="button" class="btn btn-primary">Editar</a>
-          <form method="post" action="">
+          <a href="{{url_for('editEscuela',id=escuela.id)}}" type="button" class="btn btn-primary">Editar</a>
+          <form method="post" action="{{url_for('deleteEscuela',id=escuela.id)}}">
               <button type="submit" class="btn btn-danger">Delete</button>
           </form>
       </td>

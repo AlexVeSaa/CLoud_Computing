@@ -157,7 +157,7 @@ def matricula():
         
     return render_template('matricula.html',lista=lista)
 
-@app.route('/user/edit/<id>',methods=['GET'])
+@app.route('/user/editCurso/<id>',methods=['GET'])
 def editCurso(id):
     cursoedit = Curso.query.filter_by(id = id).first()
     cursoform = CursoForm()
@@ -166,7 +166,7 @@ def editCurso(id):
     cursoform.creditoCurso.data = cursoedit.credito
     return render_template("users/editCurso.html", form_Curso=cursoform, id=cursoedit.id)
 
-@app.route('/user/edit/<id>',methods=['POST'])
+@app.route('/user/editCurso/<id>',methods=['POST'])
 def updateCurso(id):
     cursoform = CursoForm()
     cursoedit = Curso.query.filter_by(id = id).first()
@@ -177,7 +177,7 @@ def updateCurso(id):
     flash("Usuario actualizado")
     return redirect(url_for('curso'))
     
-@app.route('/user/delete/<id>',methods=['POST'])
+@app.route('/user/deleteCurso/<id>',methods=['POST'])
 def deleteCurso(id):
     cursodelete = Curso.query.filter_by(id = id).first()
     for matricula in cursodelete.matricula:
@@ -187,8 +187,69 @@ def deleteCurso(id):
     db.session.commit()
     return redirect(url_for('curso'))
 
+@app.route('/user/editEscuela/<id>',methods=['GET'])
+def editEscuela(id):
+    escuelaedit = Escuela.query.filter_by(id = id).first()
+    escuelaform = EscuelaForm()
+    escuelaform.codigoEscuela.data = escuelaedit.codigo
+    escuelaform.nombreEscuela.data = escuelaedit.nombre
+    escuelaform.duracionEscuela.data = escuelaedit.duracion
+    return render_template("users/editEscuela.html", form_Escuela=escuelaform, id=escuelaedit.id)
 
+@app.route('/user/editEscuela/<id>',methods=['POST'])
+def updateEscuela(id):
+    escuelaform = EscuelaForm()
+    escuelaedit = Escuela.query.filter_by(id = id).first()
+    escuelaedit.codigo = escuelaform.codigoEscuela.data
+    escuelaedit.nombre = escuelaform.nombreEscuela.data
+    escuelaedit.duracion = escuelaform.duracionEscuela.data 
+    db.session.commit()
+    flash("Usuario actualizado")
+    return redirect(url_for('escuela'))
 
+@app.route('/user/deleteEscuela/<id>',methods=['POST'])
+def deleteEscuela(id):
+    escueladelete = Escuela.query.filter_by(id = id).first()
+    for matricula in escueladelete.matricula:
+        db.session.delete(matricula) 
+        db.session.commit()        
+    db.session.delete(escueladelete)
+    db.session.commit()
+    return redirect(url_for('escuela'))
+
+@app.route('/user/editEstudiante/<id>',methods=['GET'])
+def editEstudiante(id):
+    estudianteedit = Estudiante.query.filter_by(id = id).first()
+    estudianteform = EstudianteForm()
+    estudianteform.nombres.data = estudianteedit.nombres
+    estudianteform.apellido.data = estudianteedit.apellido
+    estudianteform.DNI.data = estudianteedit.DNI
+    estudianteform.fechaNacimiento.data = estudianteedit.fechaNacimiento
+    estudianteform.sexo.data = estudianteedit.sexo
+    return render_template("users/editEstudiante.html", form_student=estudianteform, id=estudianteedit.id)
+
+@app.route('/user/editEstudiante/<id>',methods=['POST'])
+def updateEstudiante(id):
+    estudianteform = EstudianteForm()
+    estudianteedit = Estudiante.query.filter_by(id = id).first()
+    estudianteedit.nombres = estudianteform.nombres.data
+    estudianteedit.apellido = estudianteform.apellido.data 
+    estudianteedit.DNI = estudianteform.DNI.data 
+    estudianteedit.fechaNacimiento = estudianteform.fechaNacimiento.data
+    estudianteedit.sexo = estudianteform.sexo.data
+    db.session.commit()
+    flash("Usuario actualizado")
+    return redirect(url_for('estudiante'))
+
+@app.route('/user/deleteEstudiante/<id>',methods=['POST'])
+def deleteEstudiante(id):
+    estudiantedelete = Escuela.query.filter_by(id = id).first()
+    for matricula in estudiantedelete.matricula:
+        db.session.delete(matricula) 
+        db.session.commit()        
+    db.session.delete(estudiantedelete)
+    db.session.commit()
+    return redirect(url_for('estudiante'))
 
 
 

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>ESTUDIANTE</h2>
+<form method="post" action="{{url_for('updateEstudiante',id=id)}}">
+  {{ form_student.hidden_tag() }}
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.nombres.label(class="form-label") }}
+    {{form_student.nombres(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.apellido.label(class="form-label") }}
+    {{form_student.apellido(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.DNI.label(class="form-label") }}
+    {{form_student.DNI(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.fechaNacimiento.label(class="form-label") }}
+    {{form_student.fechaNacimiento(class = "form-control")}}
+    </div>
+  </div>
+  <div class="form-row"> 
+    <div class="col-md-6 mb-3">
+    {{form_student.sexo.label(class="form-label") }}
+    {{form_student.sexo(class = "form-control")}}
+    </div>
+  </div>
+      <input class="btn btn-primary" type="submit" value="GUARDAR">
+</form>
+<br>
+{% endblock %}
