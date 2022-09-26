@@ -147,12 +147,45 @@ def matricula():
         escuela = Escuela.query.filter_by(id=matricula.escuela_id).first()
         curso = Curso.query.filter_by(id=matricula.curso_id).first()
         lista.append({
+            "codigoEstudiante":estudiante.DNI,
+            "nombreEstudiante":estudiante.nombres,
+            "codigoEscuela":escuela.codigo,
             "nombreEscuela":escuela.nombre,
-            "nombreCurso":curso.nombre,
-            "nombreEstudiante":estudiante.nombres
-        })    
+            "codigoCurso":curso.codigo,
+            "nombreCurso":curso.nombre
+        })
+        
     return render_template('matricula.html',lista=lista)
 
+@app.route('/user/edit/<id>',methods=['GET'])
+def editCurso(id):
+    cursoedit = Curso.query.filter_by(id = id).first()
+    cursoform = CursoForm()
+    cursoform.codigoCurso.data = cursoedit.codigo
+    cursoform.nombreCurso.data = cursoedit.nombre
+    cursoform.creditoCurso.data = cursoedit.credito
+    return render_template("users/editCurso.html", form_Curso=cursoform, id=cursoedit.id)
+
+@app.route('/user/edit/<id>',methods=['POST'])
+def updateCurso(id):
+    cursoform = CursoForm()
+    cursoedit = Curso.query.filter_by(id = id).first()
+    cursoedit.codigo = cursoform.codigoCurso.data
+    cursoedit.nombre = cursoform.nombreCurso.data
+    cursoedit.credito = cursoform.creditoCurso.data 
+    db.session.commit()
+    flash("Usuario actualizado")
+    return redirect(url_for('curso'))
+    
+@app.route('/user/delete/<id>',methods=['POST'])
+def deleteCurso(id):
+    cursodelete = Curso.query.filter_by(id = id).first()
+    for matricula in cursodelete.matricula:
+        db.session.delete(matricula) 
+        db.session.commit()        
+    db.session.delete(cursodelete)
+    db.session.commit()
+    return redirect(url_for('curso'))
 
 
 

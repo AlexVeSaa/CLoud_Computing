@@ -5,19 +5,24 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">CURSO</th>
-        <th scope="col">ESCUELA</th>
-        <th scope="col">ESTUDIANTE</th>
+        <th scope="col">DNI de Estudiante</th>
+        <th scope="col">Nombre de Estudiante</th>
+        <th scope="col">Codigo de Escuela</th>
+        <th scope="col">Nombre de Escuela</th> 
+        <th scope="col">Codigo de Curso</th>
+        <th scope="col">Nombre de Curso</th>
       </tr>
     </thead>
     <tbody>
       {% for matricula in lista %}
       <tr>
         <th scope="row">{{loop.index}}</th>
-        <td>{{matricula.nombreEscuela}}</td>
-        <td>{{matricula.nombreCurso}}</td>
+        <td>{{matricula.codigoEstudiante}}</td>
         <td>{{matricula.nombreEstudiante}}</td>
-        
+        <td>{{matricula.codigoEscuela}}</td>
+        <td>{{matricula.nombreEscuela}}</td>
+        <td>{{matricula.codigoCurso}}</td>
+        <td>{{matricula.nombreCurso}}</td>
       </tr>
       {% endfor %} 
     </tbody>
