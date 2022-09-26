@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  
+<h2>CURSO</h2>
+    <br/>
+    <form method="post" action="{{url_for('updateCurso',id=id)}}">
+      <div class="form-row"> 
+        <div class="col-md-6 mb-3">
+        {{form_Curso.codigoCurso.label(class="form-label") }}
+        {{form_Curso.codigoCurso(class = "form-control")}}
+        </div>
+      </div>
+      <div class="form-row"> 
+        <div class="col-md-6 mb-3">
+        {{form_Curso.nombreCurso.label(class="form-label") }}
+        {{form_Curso.nombreCurso(class = "form-control")}}
+        </div>
+      </div>
+      <div class="form-row"> 
+        <div class="col-md-6 mb-3">
+        {{form_Curso.creditoCurso.label(class="form-label") }}
+        {{form_Curso.creditoCurso(class = "form-control")}}
+        </div>
+      </div>
+        <input class="btn btn-primary" type="submit" value="GUARDAR">
+      </form>
+{% endblock %}
