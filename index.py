@@ -6,17 +6,11 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-# #Add Database 
-# ##app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-
-# ##app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:''@localhost/cliente"
-
-# app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://root@127.0.0.1/client"
-
-#                                         # "mysql+mysqldb://scott:tiger@192.168.0.134/test"
-
-#Add Database 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://root@127.0.0.1:3308/examen"
+ 
+#Add Database local
+#app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://root@127.0.0.1/examen"
+#Database concectado a Amazon WS
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://Alex:Admin1234@44.202.81.95/examen"
 
 app.config['SECRET_KEY']='My super secret that no one is supposed to know'
 #Initialize the Database
@@ -243,7 +237,7 @@ def updateEstudiante(id):
 
 @app.route('/user/deleteEstudiante/<id>',methods=['POST'])
 def deleteEstudiante(id):
-    estudiantedelete = Escuela.query.filter_by(id = id).first()
+    estudiantedelete = Estudiante.query.filter_by(id = id).first()
     for matricula in estudiantedelete.matricula:
         db.session.delete(matricula) 
         db.session.commit()        
